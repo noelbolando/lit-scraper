@@ -2,7 +2,10 @@
 
 # import libraries
 from datetime import datetime
+from dotenv import load_dotenv
+from exa_py import Exa
 from pathlib import Path
+import os
 from textwrap import dedent
 
 from agno.agent import Agent
@@ -10,6 +13,10 @@ from agno.models.ollama import Ollama
 from agno.tools.exa import ExaTools
 
 today = datetime.now().strftime("%Y-%m-%d")
+# load EXA_API_KEY
+# if you haven't set this up yet, you will need to do so before running Agno with Exa
+load_dotenv()
+exa = Exa(os.getenv("EXA_API_KEY"))
 
 agent = Agent(
     model=Ollama(id="mistral"),
